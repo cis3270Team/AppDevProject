@@ -87,17 +87,59 @@ public class Main {
 		// Create a Scanner object
 		Scanner input = new Scanner(System.in);
 		// Prompt the user
+		System.out.println("Enter First Name: ");//Added a first Name for data field
+		String firstName = input.next();
+		customer.setFirstName(firstName);
+		System.out.println("Enter Last Name: ");//Added a last Name for data field
+		String lastName = input.next();
+		customer.setLastName(lastName);
 		System.out.println("Enter username: ");
 		String username = input.next();
+		customer.setUserName(username);
 		System.out.println("Enter password: ");
 		String password = input.next();
+		//Created Security Question
+		System.out.println("Select a security question ");
+		System.out.println("1. Favorite pets name? ");
+		System.out.println("2. Where your mom from?  ");
+		System.out.println("3. Where you where born? ");
+		System.out.println("4. Your 2nd grade teacher ? ");
+		System.out.println("Select a question by picking the number");
+		int a = input.nextInt();
+		if(a==1) {
+			System.out.println("Enter the Answer");
+			String answer =input.nextLine();
+			customer.setPassword(password,"Favorite pets name?",answer);
 
+		}
+		if(a==2) {
+			System.out.println("Enter the Answer");
+			String answer =input.nextLine();
+			customer.setPassword(password,"Where your mom is from?",answer);
+
+		}
+		if(a==3) {
+			System.out.println("Enter the Answer");
+			String answer =input.nextLine();
+			customer.setPassword(password,"Where you where born?",answer);
+
+		}
+		if(a==4) {
+			System.out.println("Enter the Answer");
+			String answer =input.nextLine();
+			customer.setPassword(password,"Your 2nd grade teacher?",answer);
+
+		}
+
+	
 		input.close(); // Close input to avoid error
 
 		File file = new File("test.txt"); // Mock database of Customer data
 
 		try {
 			PrintWriter output = new PrintWriter(file); // Write user input in database
+			output.print(username + " ");
+			output.print(password + " ");
 			output.print(username + " ");
 			output.print(password + " ");
 			input.close(); // Close input to avoid error
