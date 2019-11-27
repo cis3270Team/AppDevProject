@@ -14,9 +14,9 @@ public class Customer {
 	private String userName;
 	private Password password;
 	private String[] securityQuestions =   {"1. What is your favorite pet's name? ",
-											"2. Where is your mom from?  ",
-											"3. Where were you born? ",
-											"4. What is the name of your 2nd grade teacher? "};
+											                    "2. Where is your mom from?  ",
+											                    "3. Where were you born? ",
+											                    "4. What is the name of your 2nd grade teacher? "};
 	
 	//no-argument constructor creates a default customer
 	public Customer() {
