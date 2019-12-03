@@ -1,31 +1,55 @@
 package reservation.util;
 
 public class Password {
-private String password;
-private String securityQuestion;
-private String answer;
+	
+	//Data field
+	private String password;
+	private String securityQuestion;
+	private String answer;
 
-public Password(String passWord,String securityQuestion,String answer ) {
-	this.password=passWord;
-	this.securityQuestion=securityQuestion;
-	this.answer=answer;
-}
+	//Constructors
+	public Password() {
+	}
+	
+	public Password(String password) {
+		this.password = password;
+	}
+	
+	public Password(String passWord, String securityQuestion, String answer) {
+		this.password = passWord;
+		this.securityQuestion = securityQuestion;
+		this.answer = answer;
+	}
 
-public String getPassword() {
-	return password;
-}
+	
+	//Method returns the security question for this password
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+	
+	//Method sets the security question for this password
+	public void setSecurityQuestion(String question) {
+		this.securityQuestion = question;
+	}
 
-public String getSecurityQuestion() {
-	return securityQuestion;
-}
+	//returns answer to this password's security question
+	public String getAnswer() {
+		return answer;
+	}
 
-public String getAnswer() {
-	return answer;
-}
-
-public void setAnswer(String answer) {
-	this.answer = answer;
-}
-
+	//sets answer to this password's security question
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	
+	//displays this password's security question
+	public void printSecurityQuestion() {
+		System.out.println(securityQuestion);
+	}
+	
+	@Override
+	public String toString() {
+		return password;
+	}
 
 }
