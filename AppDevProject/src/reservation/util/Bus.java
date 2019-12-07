@@ -80,28 +80,28 @@ package reservation.util;
 		this.arrivalTime = arrivalTime;
 
 	}
-
+    // Get bus make/type
 	public String getBusType() {
 		return busType;
 	}
-
+    // Return the bus make/type
 	public void setbusType(String bus) {
 		this.busType = busType;
 	}
-
+    // Get Bus ID/Number
 	public int getBusNumber() {
 		return busNumber;
 	}
-
+    // Return Bus ID/Number
 	public void setBusNumber(int busNumber) {
 		this.busNumber = busNumber;
 	}
-
-	public int getbusCapacity() {
+    
+	public int getBusCapacity() {
 		return busCapacity;
 	}
 
-	public void setFlightCapacity(int busCapacity) {
+	public void setBusCapacity(int busCapacity) {
 		this.busCapacity = busCapacity;
 	}
 
@@ -179,7 +179,7 @@ package reservation.util;
 
 	@Override
 	public String toString() {
-		return "Flight [airline=" + bus + ", flightNumber=" + busNumber + ", flightCapacity=" + busCapacity
+		return "Bus [busType=" + bus + ", busNumber=" + busNumber + ", busCapacity=" + busCapacity
 				+ ", seatsAvailable=" + seatsAvailable + ", seatsOccupied=" + seatsOccupied + ", originCity=" + originCity
 				+ ", destinationCity=" + destinationCity + ", departureTime=" + departureTime + ", arrivalTime="
 				+ arrivalTime + ", departureDate=" + departureDate + ", arrivalDate=" + arrivalDate + ", isFull=" + isFull
