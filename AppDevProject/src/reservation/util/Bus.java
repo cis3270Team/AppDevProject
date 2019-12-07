@@ -14,7 +14,7 @@ package reservation.util;
 	import javafx.collections.ObservableList;
 
 	public class Bus implements ObservableList {	
-	private String bus;	
+	private String bus;
 	private String busType;
 	private int busNumber;
 	private int busCapacity;
