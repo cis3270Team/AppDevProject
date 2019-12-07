@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class Main {
+public class Menu {
 	/** The driver class for bus travel reservation system */
 
 	// main method
