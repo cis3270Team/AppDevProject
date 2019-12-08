@@ -15,96 +15,116 @@ package reservation.util;
 
 	public class Bus implements ObservableList {	
 	private String bus;
-	private String busType;
 	private int busNumber;
-	private int busCapacity;
+	private String departureCity;
+	private String destinationCity;
+	private Date departureDate;
+	private int capacity;
+	private int passengerCount;
 	private int seatsAvailable;
 	private int seatsOccupied;
-	private String originCity;
-	private String destinationCity;
-	private Time departureTime;
+	private String departureTime;
 	private Time arrivalTime;
-	private Date departureDate;
-	private Date arrivalDate;
 	private boolean isFull;
-	private Timestamp time;
 	 
 	public Bus (){
 		
 	}
 
-	public Bus(String bus, int busNumber, String originCity, String destinationCity) {
+	public Bus(String bus, int busNumber, String departureCity, String destinationCity) {
 		super();
-		this.busType = busType;
 		this.busNumber = busNumber;
-		this.originCity = originCity;
+		this.departureCity = departureCity;
 		this.destinationCity = destinationCity;
 	}
 
-	public Bus( int busNumber,String busType, String originCity, String destinationCity, Date departureDate, Time departureTime, Date arrivalDate, Time arrivalTime,int seatsAvailable, Timestamp time) {
+	public Bus( int busNumber, String departureCity, String destinationCity, Date departureDate, String departureTime, Date arrivalDate, Time arrivalTime,int seatsAvailable, Timestamp time) {
 		super();
-		this.busType = busType;
 		this.busNumber = busNumber;
-		this.originCity = originCity;
+		this.departureCity = departureCity;
 		this.destinationCity = destinationCity;
 		this.departureDate = departureDate;
 		this.departureTime = departureTime;
-		this.arrivalDate = arrivalDate;
 		this.arrivalTime = arrivalTime;
 		this.seatsAvailable = seatsAvailable;
-		this.time = time;
 	}
-	public Bus( int busNumber,String busType, String originCity, String destinationCity, Date departureDate, Time departureTime, Date arrivalDate, Time arrivalTime,int seatsAvailable) {
+	public Bus( int busNumber, String departureCity, String destinationCity, Date departureDate, String departureTime, Date arrivalDate, Time arrivalTime,int seatsAvailable) {
 		super();
-		this.busType = busType;
 		this.busNumber = busNumber;
-		this.originCity = originCity;
+		this.departureCity = departureCity;
 		this.destinationCity = destinationCity;
 		this.departureDate = departureDate;
 		this.departureTime = departureTime;
-		this.arrivalDate = arrivalDate;
 		this.arrivalTime = arrivalTime;
 		this.seatsAvailable = seatsAvailable;
 	}
 
 
-	public Bus( int busNumber,String busType, String originCity, String destinationCity, Date departureDate, Time departureTime, Date arrivalDate, Time arrivalTime) {
+	public Bus( int busNumber, String departureCity, String destinationCity, Date departureDate, String departureTime, Date arrivalDate) {
 		super();
-		this.busType = busType;
 		this.busNumber = busNumber;
-		this.originCity = originCity;
+		this.departureCity = departureCity;
 		this.destinationCity = destinationCity;
 		this.departureDate = departureDate;
 		this.departureTime = departureTime;
-		this.arrivalDate = arrivalDate;
-		this.arrivalTime = arrivalTime;
 
 	}
-    // Get bus make/type
-	public String getBusType() {
-		return busType;
-	}
-    // Return the bus make/type
-	public void setbusType(String bus) {
-		this.busType = busType;
-	}
-    // Get Bus ID/Number
+
 	public int getBusNumber() {
 		return busNumber;
 	}
-    // Return Bus ID/Number
+
 	public void setBusNumber(int busNumber) {
 		this.busNumber = busNumber;
 	}
+	
+	public String getdepartureCity() {
+		return departureCity;
+	}
+
+	public void setdepartureCity(String departureCity) {
+		this.departureCity = departureCity;
+	}
+	
+
+	public String getDestinationCity() {
+		return destinationCity;
+	}
+
+	public void setDestinationCity(String destinationCity) {
+		this.destinationCity = destinationCity;
+	}
+	
+	public Date getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(Date departureDate) {
+		this.departureDate = departureDate;
+	
+	}
     
-	public int getBusCapacity() {
-		return busCapacity;
+	public int setcapacity() {
+		return capacity;
+	}
+	
+	public void getcapacity(int capacity) {
+		this.capacity = capacity;
+	}
+	
+	public boolean isFull() {
+		return isFull;
 	}
 
-	public void setBusCapacity(int busCapacity) {
-		this.busCapacity = busCapacity;
+	public void setFull(boolean isFull) {
+		this.isFull = isFull;
 	}
-
+	
+	public int getpassengerCount() {
+		return passengerCount;
+		
+	}
+	
 	public int getSeatsAvailable() {
 		return seatsAvailable;
 	}
@@ -121,27 +141,11 @@ package reservation.util;
 		this.seatsOccupied = seatsOccupied;
 	}
 
-	public String getOriginCity() {
-		return originCity;
-	}
-
-	public void setOriginCity(String originCity) {
-		this.originCity = originCity;
-	}
-
-	public String getDestinationCity() {
-		return destinationCity;
-	}
-
-	public void setDestinationCity(String destinationCity) {
-		this.destinationCity = destinationCity;
-	}
-
-	public Time getDepartureTime() {
+	public String getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Time departureTime) {
+	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
 
@@ -153,36 +157,13 @@ package reservation.util;
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Date getDepartureDate() {
-		return departureDate;
-	}
-
-	public void setDepartureDate(Date departureDate) {
-		this.departureDate = departureDate;
-	}
-
-	public Date getArrivalDate() {
-		return arrivalDate;
-	}
-
-	public void setArrivalDate(Date arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
-
-	public boolean isFull() {
-		return isFull;
-	}
-
-	public void setFull(boolean isFull) {
-		this.isFull = isFull;
-	}
 
 	@Override
 	public String toString() {
-		return "Bus [busType=" + bus + ", busNumber=" + busNumber + ", busCapacity=" + busCapacity
-				+ ", seatsAvailable=" + seatsAvailable + ", seatsOccupied=" + seatsOccupied + ", originCity=" + originCity
+		return "Bus" + bus + ", busNumber=" + busNumber + ", busCapacity=" + capacity
+				+ ", seatsAvailable=" + seatsAvailable + ", seatsOccupied=" + seatsOccupied + ", originCity=" + departureCity
 				+ ", destinationCity=" + destinationCity + ", departureTime=" + departureTime + ", arrivalTime="
-				+ arrivalTime + ", departureDate=" + departureDate + ", arrivalDate=" + arrivalDate + ", isFull=" + isFull
+				+ arrivalTime + ", departureDate=" + departureDate + ", arrivalDate=" + ", isFull=" + isFull
 				+ "]";
 	}
 
@@ -384,6 +365,4 @@ package reservation.util;
 		return false;
 	}
 
-
-
-	}
+}
