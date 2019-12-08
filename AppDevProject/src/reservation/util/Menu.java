@@ -6,49 +6,10 @@ import reservation.data.Messenger;
 
 public interface Menu {
 	
-	/** method returns true if this user is valid */
-	public static boolean isValidUser(String username, String password) {
-		// Get user information from the database
-		String[] result;
-		try {
-			result = Messenger.getUser(username, password);
-		}
-		catch (SQLException sql) {
-			System.out.println(sql.getMessage());
-			return false;
-		}
-		
-		if (result.length == 0) {
-			return false;
-		}
-		else
-			return true;
-		
-	}
-	
-	/** method returns true if username exists */
-	public static boolean usernameExists(String username) {
-		// Check if username exists in the database
-		String result;
-		try {
-			result = Messenger.getUsername(username);
-		} catch (SQLException sql) {
-			System.out.println(sql.getMessage());
-			return false;
-		}
-
-		if (result.length() == 0) {
-			return false;
-		} else
-			return true;
-				
-	}
-
 	/** method for User login */
 	public static User login(String username, String password) {
 		// Get user information from the database
 		String[] result = null; // Create a string array to store data
-		User user;// Create a user reference variable
 		try {
 			result = Messenger.getUser(username, password); // query the database
 		}
@@ -59,13 +20,24 @@ public interface Menu {
 			System.out.println(e.getMessage());
 		}
 		
-		if (result[2].matches("Admin")) {
-			return new Admin(result[0], result[1], result[2], result[3], result[4], result[5], result[6],
+		try {
+		
+			if (result[2].matches("Admin")) {
+				return new Admin(result[0], result[1], result[2], result[3], result[4], result[5], result[6],
+					result[7], result[8], result[9], result[10], result[11], result[12]);
+			}
+			else
+				return new Customer(result[0], result[1], result[2], result[3], result[4], result[5], result[6],
 					result[7], result[8], result[9], result[10], result[11], result[12]);
 		}
-		else
-			return new Customer(result[0], result[1], result[2], result[3], result[4], result[5], result[6],
-					result[7], result[8], result[9], result[10], result[11], result[12]);
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("Invalid user");
+		}
+		
+		return new Customer();
+		
 	}
 
 	/** method for User registration */
@@ -76,7 +48,7 @@ public interface Menu {
 			return "Your registration information is incomplete";
 		}
 		// user name should be matched with database to avoid duplication and ensure unique identity
-		else if (usernameExists(newUser[0])) {
+		else if (Check.usernameExists(newUser[0])) {
 			return "Username exists";
 		}
 		
@@ -150,7 +122,7 @@ public interface Menu {
 	public static String[] forgotPassword(String username) {
 		String[] query = null; String[] result = new String[3];
 		// Check if username exists
-		if (usernameExists(username)) {
+		if (Check.usernameExists(username)) {
 			try {
 				query = Messenger.getUser(username);
 			}

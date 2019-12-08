@@ -81,7 +81,7 @@ public class Messenger {
 		*/
 		
 		try {
-			String[] user = getReservation(100);
+			String[] user = getReservation(1001);
 			
 			if (user[0] == null) {
 				System.out.println("Invalid username or password");
