@@ -6,7 +6,7 @@ public class Customer extends User {
 	public Customer() {
 		
 	}
-	
+	/** main constructor accepts 13 string arguments */
 	public Customer(String username, String password, String userType, String firstName,
 			String lastName, String address, String city, String state, String zipCode, String email,
 			String ssn, String securityQuestion, String securityAnswer) {

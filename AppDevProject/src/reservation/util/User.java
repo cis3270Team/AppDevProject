@@ -1,6 +1,6 @@
 package reservation.util;
 
-public abstract class User {
+public abstract class User implements Menu {
 	
 	//Data field
 	private String firstName;
@@ -16,6 +16,7 @@ public abstract class User {
 	private String securityQuestion;
 	private String securityAnswer;
 	private String type;
+	public Reservation reservation;
 	
 	//no-argument constructor creates a default customer
 	public User() {
@@ -86,18 +87,22 @@ public abstract class User {
 		return city;
 	}
 
+	// sets this user's city
 	public void setCity(String city) {
 		this.city = city;
 	}
 
+	// returns this user's city
 	public String getState() {
 		return state;
 	}
 
+	// sets this user's state
 	public void setState(String state) {
 		this.state = state;
 	}
 
+	// returns this user's state
 	public String getEmail() {
 		return email;
 	}
@@ -131,10 +136,12 @@ public abstract class User {
 		return password.toString();
 	}
 	
+	// returns user type
 	public String getType() {
 		return type;
 	}
 
+	// sets user type
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -149,12 +156,19 @@ public abstract class User {
 		this.securityAnswer = answer;
 	}
 	
+	// returns this user password security question
 	public String getSecurityQuestion() {
 		return this.securityQuestion;
 	}
 	
+	// returns this user password security answer
 	public String getSecurityAnswer() {
 		return this.securityAnswer;
+	}
+	
+	@Override
+	public void makeNewReservation(int busNumber, String departureDate, int ticketNumber) {
+		reservation = new Reservation(this.userName,busNumber,departureDate,ticketNumber);
 	}
 
 }

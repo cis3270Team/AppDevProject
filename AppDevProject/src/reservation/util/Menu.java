@@ -142,6 +142,9 @@ public interface Menu {
 		return result;
 		
 	}
+	
+	/** abstract method makes new reservation for this user */
+	public abstract void makeNewReservation(int busNumber,String departureDate,int ticketNumber);
 		
 
 }

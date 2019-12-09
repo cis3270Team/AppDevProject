@@ -48,4 +48,57 @@ public class Check {
 				
 	}
 	
+	// returns the last reservationCount
+	public static int getReservationCount() {
+		int result = 0;
+		
+		try {
+			result = Messenger.getReservationCount();
+		}
+		catch (SQLException s) {
+			
+		}
+		catch (Exception e) {
+			
+		}
+		
+		return result;
+	}
+	
+	// returns the last reservationCount
+	public static void setReservationCount(int resCount) {
+
+		try {
+			Messenger.setReservationCount(resCount);
+		} catch (SQLException s) {
+
+		} catch (Exception e) {
+
+		}
+
+		System.out.println("Success!");
+	}
+	
+	// returns true if reservation exists
+	public static boolean reservationExists(String departureDate, String username) {
+		String[] result = null;
+		try {
+			result = Messenger.getReservation(departureDate, username);
+		}
+		
+		catch (SQLException sql) {
+			return true;
+		}
+		catch (Exception e) {
+			return true;
+		}
+		
+		if (result.equals(null) || result[0] == null) {
+			return false;
+		}
+		else
+			return true;
+		
+	}
+
 }

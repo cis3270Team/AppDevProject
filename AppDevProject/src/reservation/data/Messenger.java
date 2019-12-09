@@ -125,6 +125,7 @@ public class Messenger {
 		return city;
 	}
 	
+	/** method creates a new user */
 	public static String createUser(String username, String password, String userType, String firstName,
 			String lastName, String address, String city, String state, String zipCode, String email,
 			String ssn, String securityQuestion, String securityAnswer) throws SQLException {
@@ -233,6 +234,7 @@ public class Messenger {
 
 	}
 	
+	/** method returns userName */
 	public static String getUsername(String username) throws SQLException {
 
 		Messenger c = new Messenger();
@@ -259,6 +261,7 @@ public class Messenger {
 
 	}
 	
+	/** method creates a new Bus */
 	public static void createBus(int busNumber, String departureCity, String departureDate,
 			String destinationCity, int capacity, int passengerCount) throws SQLException {
 
@@ -281,6 +284,7 @@ public class Messenger {
 
 	}
 	
+	/** method returns Bus details */
 	public static String[] getBus(String departureCity) throws SQLException {
 		
 		Messenger c = new Messenger();
@@ -312,6 +316,7 @@ public class Messenger {
 		
 	}
 	
+	/** method creates new reservation */
 	public static String createReservation(int reservationNumber, String dateCreated, String username,
 			int busNumber, String departureDate, int ticketNumber) throws SQLException {
 		
@@ -335,6 +340,7 @@ public class Messenger {
 		return "Success!";
 	}
 	
+	/** method returns reservation details */
 	public static String[] getReservation(int reservationNumber) throws SQLException {
 		Messenger c = new Messenger();
 
@@ -362,6 +368,81 @@ public class Messenger {
 		c.connection.close();
 
 		return reservation;
+	}
+	
+	/** Overloaded method returns reservation details */
+	public static String[] getReservation(String departureDate, String username) throws SQLException {
+		Messenger c = new Messenger();
+
+		String[] reservation = new String[6];
+
+		c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+		String query = "Select * from Reservation where departureDate =? and username=?";
+
+		PreparedStatement statement = c.connection.prepareStatement(query);
+
+		statement.setString(1, departureDate);
+		statement.setString(2, username);
+
+		ResultSet result = statement.executeQuery();
+
+		if (result.next()) {
+			reservation[0] = "" + result.getInt(1);
+			reservation[1] = result.getString(2);
+			reservation[2] = result.getString(3);
+			reservation[3] = "" + result.getInt(4);
+			reservation[4] = result.getString(5);
+			reservation[5] = "" + result.getInt(6);
+		}
+
+		c.connection.close();
+
+		return reservation;
+	}
+	
+	// gets the last reservation number from projectdb
+	public static int getReservationCount() throws SQLException {
+
+		Messenger c = new Messenger();
+
+		c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+		String query = "Select * from ReservationCount";
+
+		PreparedStatement statement = c.connection.prepareStatement(query);
+
+		ResultSet result = statement.executeQuery();
+
+		int data = 0;
+
+		if (result.next()) {
+			data = result.getInt(1);
+		}
+
+		c.connection.close();
+
+		return data;
+
+	}
+	
+	// sets the last reservation number in projectdb
+	public static void setReservationCount(int resCount) throws SQLException {
+
+		Messenger c = new Messenger();
+
+		c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+		String query = "update ReservationCount set resCount=?";
+
+		PreparedStatement statement = c.connection.prepareStatement(query);
+		
+		statement.setInt(1, resCount);
+
+		statement.executeUpdate();
+		
+		c.connection.close();
+
 	}
 
 }
