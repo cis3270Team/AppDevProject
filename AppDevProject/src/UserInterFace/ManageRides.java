@@ -4,24 +4,22 @@ import java.util.NoSuchElementException;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class BookRides extends Application {
+public class ManageRides extends Application {
 
     Stage window;
     TableView<Bus> table;
-    TableView<Reservation> reservation;
-   
+    TextField busId, originCity, destinationCity,departureTime,departureDate,capacity,remaining;
 
     public static void main(String[] args) {
         launch(args);
@@ -29,7 +27,7 @@ public class BookRides extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-      
+       Alert.display("Admin", "Please add & Remove Bus Rides Carefully");
     	window = primaryStage;
         window.setTitle("thenewboston - JavaFX");
         //Bus Id column
@@ -58,48 +56,36 @@ public class BookRides extends Application {
         TableColumn<Bus,String> remainingColumn  = new TableColumn<>("Seats Remaining");
         remainingColumn.setMinWidth(150);
         remainingColumn.setCellValueFactory(new PropertyValueFactory<>("seatsOccupied"));
-        
-        //Reservation Number column 
-        TableColumn<Reservation, Integer> reservationNumber = new TableColumn<>("Reservation ID");
-        reservationNumber.setMinWidth(200);
-        reservationNumber.setCellValueFactory(new PropertyValueFactory<>("reservationNumber"));
+        //Bus input
+        busId = new TextField();
+        busId.setPromptText("Bus Id");
+        busId.setMinWidth(150);
 
-        //Date Created column
-        TableColumn<Reservation, String> dateCreated = new TableColumn<>("Date Created");
-        dateCreated.setMinWidth(150);
-        dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
+        //Departure City input
+        originCity = new TextField();
+        originCity.setPromptText("Departure City");
 
-        //Username column
-        TableColumn<Reservation, String> userName = new TableColumn<>("Username");
-        userName.setMinWidth(100);
-        userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
-      //Bus Number column
-        TableColumn<Reservation, Integer> busNumber = new TableColumn<>("Bus Number");
-        busNumber.setMinWidth(100);
-        busNumber.setCellValueFactory(new PropertyValueFactory<>("busNumber"));
-        //Departure Date column
-        TableColumn<Reservation, String> departureDate = new TableColumn<>("Departure Date");
-        departureDate.setMinWidth(150);
-        departureDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
-      //Ticket Number column
-        TableColumn<Reservation,Integer> ticketNumber  = new TableColumn<>("Ticket Number");
-        ticketNumber.setMinWidth(150);
-        ticketNumber.setCellValueFactory(new PropertyValueFactory<>("ticketNumber"));
-        reservation=new TableView<Reservation>();
-
+        //Destination City input
+        destinationCity = new TextField();
+        destinationCity.setPromptText("Destination City");
+        //Departure Date City input
+        departureTime = new TextField();
+        departureTime.setPromptText("Departure Date");
+        //Destination City input
+        capacity = new TextField();
+        capacity.setPromptText("Amount");
+        //Departure Date City input
+        remaining = new TextField("0");
         //Add Button
-        Button bookButton = new Button("Book");
-        bookButton.setOnAction(e -> addButtonClicked());
+        Button addButton = new Button("Add");
+        addButton.setOnAction(e -> addButtonClicked());
         //Delete Button
-        Button delete = new Button("Remove Flight");
-        delete.setOnAction(e -> {
-        	
-        });
-    
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(e -> deleteButtonClicked());
       //Back Button to return to admin main page
-        Button back = new Button("Back");
+        Button back = new Button("back");
         back.setOnAction(e ->{
-        	WelcomePage a=new WelcomePage();
+        	AdminPage a=new AdminPage();
         	try {
 				a.start(window);
 			} catch (Exception e1) {
@@ -108,33 +94,45 @@ public class BookRides extends Application {
 			}
         });
         HBox hBox = new HBox();
-        Label book= new Label("Book a Bus Ride");
-        Label space= new Label("   ");
-        hBox.getChildren().addAll(book,space,bookButton);
-        hBox.setAlignment(Pos.BASELINE_RIGHT);
+        hBox.setPadding(new Insets(10,10,10,10));
+        hBox.setSpacing(10);
+        hBox.getChildren().addAll(busId, originCity,departureTime, destinationCity,capacity,remaining,addButton, deleteButton,back);
+
         table = new TableView<>();
       
         table.getColumns().addAll(busIdColumn, originCityColumn, departureColumn,departingCity,capcityColumn,remainingColumn);
-        reservation.getColumns().addAll(reservationNumber,dateCreated,userName,busNumber,departureDate,ticketNumber);
+
         VBox vBox = new VBox();
         vBox.getChildren().addAll(table, hBox);
-        VBox yu=new VBox();
-        HBox hBack = new HBox();
-        hBack.getChildren().addAll(delete,back);
-        hBack.setAlignment(Pos.BASELINE_RIGHT);
-
-        yu.getChildren().addAll(reservation,hBack);
         BorderPane lay=new BorderPane();
-        lay.setCenter(yu);
-        lay.setTop(vBox);
-        Scene scene = new Scene(lay,850,850);
+        lay.setCenter(vBox);
+        
+        Scene scene = new Scene(lay);
         window.setScene(scene);
         window.show();
     }
 
     //Add button clicked
     public void addButtonClicked(){
-    	
+    	try {
+    	Bus bus = new Bus();
+        bus.setBusNumber(Integer.parseInt(busId.getText()));
+        bus.setOriginCity(originCity.getText());
+        bus.setDestinationCity(destinationCity.getText());
+        bus.setDepartureTime(departureTime.getText());
+        bus.setSeatsAvailable(Integer.parseInt(capacity.getText()));
+        bus.setSeatsOccupied(Integer.parseInt(remaining.getText()));
+        table.getItems().add(bus);
+        busId.clear();
+        originCity.clear();
+        destinationCity.clear();
+        departureTime.clear();
+        capacity.clear();
+     
+       }catch(Exception ex) {
+    	   Alert.display("Manage Flight", "Invalid Input please enter correct inputs!");
+
+       }
     }
 
     //Delete button clicked
@@ -149,7 +147,7 @@ public class BookRides extends Application {
     	Alert.display("Manage Flight", "There are no trips");
     	}
     }
-    
+
    
 
 

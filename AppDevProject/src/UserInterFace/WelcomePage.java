@@ -28,9 +28,28 @@ public class WelcomePage extends Application {
 		//Created a Username text field
 		Button book= new Button("Book Rides");
 		GridPane.setConstraints(book, 0, 1);
+		book.setOnAction(e->{
+			BookRides a= new BookRides();
+			try {
+				a.start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		//Created a password label
 		Button available= new Button("All Available Rides");
 		GridPane.setConstraints(available, 0,2 );
+		available.setOnAction(e->{
+			ViewAvailableRides a= new ViewAvailableRides();
+			try {
+				a.start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		});
 		//Created password input field
 		Button logout= new Button("Logout");
 		GridPane.setConstraints(logout, 0,3 );
@@ -45,7 +64,7 @@ public class WelcomePage extends Application {
 		});
 		grid.getChildren().addAll(welcome,book,available,logout);
 		grid.setAlignment(Pos.CENTER);
-		Scene scene=new Scene(grid,450,450);
+		Scene scene=new Scene(grid,650,500);
 		window.setScene(scene);
 		window.show();
 	}

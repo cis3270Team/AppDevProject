@@ -3,6 +3,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,6 +25,49 @@ public class Alert {
 		VBox layout = new VBox(10);
 		//Added a label and Button to the text field
 		layout.getChildren().addAll(label, closeButton);
+		layout.setAlignment(Pos.CENTER);
+		Scene scene = new Scene(layout);
+
+		window.setScene(scene);
+
+		window.showAndWait();
+
+	}
+	public static void display(String question,Stage stage) {
+		Stage window = stage;	
+		window.setTitle("Security question");
+		window.setMinWidth(250);	
+		//Created a Label
+		Label label = new Label();
+		label.setText(question);
+		//Created Text Field answer
+		TextField answer = new TextField();
+		answer.setPromptText("Answer");
+		//Created a Button
+		Button confirm = new Button("Confirm");
+		confirm.setOnAction(e -> {
+			//Must check database for now set false
+			if(false) {
+				Alert.display("Forgot Password", "Ola123");
+			}
+			Alert.display("Forgot Password", "Wrong Answer");
+		});
+		BusMainMenu main= new BusMainMenu();
+		//Created a Button
+		Button closeButton = new Button("Close");
+		closeButton.setOnAction(e ->{
+			try {
+				main.start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+		});	
+		//Created a layout
+		VBox layout = new VBox(10);
+		//Added a label and Button to the text field
+		layout.getChildren().addAll(label, answer,confirm,closeButton);
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout);
 

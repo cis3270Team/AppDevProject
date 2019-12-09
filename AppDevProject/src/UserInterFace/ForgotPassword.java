@@ -40,6 +40,13 @@ public class ForgotPassword extends Application {
 		//Created a complete button
 		Button complete= new Button("Confirm");
 		GridPane.setConstraints(complete, 0, 1);
+		complete.setOnAction(e->{
+			try{
+				getSecurityQuestion(nameInput.getText(),window);
+			}catch(Exception ex) {
+				
+			}
+		});
 		//Created a login button
 		Button login= new Button("Main Menu");
 		GridPane.setConstraints(login, 1,1);
@@ -59,6 +66,9 @@ public class ForgotPassword extends Application {
 		Scene scene = new Scene(grid,350,350);
 		window.setScene(scene);
 		window.show();		
+	}
+	public void getSecurityQuestion(String userName,Stage window) {
+		 Alert.display("When was you born?",window);
 	}
 
 }

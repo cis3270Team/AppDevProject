@@ -31,9 +31,27 @@ public class AdminPage extends Application {
 		//Created a available label
 		Button available= new Button("All Available Rides");
 		GridPane.setConstraints(available, 0,2 );
+		available.setOnAction(e->{
+			ViewAvailableRides a= new ViewAvailableRides();
+			try {
+				a.start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		//Created a manage trips button
 		Button manage= new Button("Manage Trips");
 		GridPane.setConstraints(manage, 0,3 );
+		manage.setOnAction(e->{
+			ManageRides admin=new ManageRides();
+			try {
+				admin.start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		//Created password input field
 		Button logout= new Button("Logout");
 		GridPane.setConstraints(logout, 0,4 );
@@ -48,6 +66,7 @@ public class AdminPage extends Application {
 				e1.printStackTrace();
 			}
 		});
+		
 		//Added all labels and buttons to the layout
 		grid.getChildren().addAll(welcome,book,available,logout,manage);
 		grid.setAlignment(Pos.CENTER);

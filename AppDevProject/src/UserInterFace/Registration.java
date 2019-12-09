@@ -138,14 +138,15 @@ public class Registration extends Application {
 		});
 		//Created a login Button
 		Button loginB=new Button("Submit");
-		Alert alert= new Alert();
 		loginB.setOnAction(e->{
 		
 			if(userInput(fName,lName,addressT,cityT,emailT,ssnT,userNameT,passWordT,answer,stateT,choiceBox,zipT))
-				alert.display("Registration", "Registration is not completed");
+				Alert.display("Registration", "Registration is not completed");
 			try {
-			if(userInput(fName,lName,addressT,cityT,emailT,ssnT,userNameT,passWordT,answer,stateT,choiceBox,zipT)==false)
+			if(userInput(fName,lName,addressT,cityT,emailT,ssnT,userNameT,passWordT,answer,stateT,choiceBox,zipT)==false) {
+				Alert.display("Registration", "Registration is completed Successfully");
 				login.start(window);
+			}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
