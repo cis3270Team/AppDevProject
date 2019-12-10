@@ -27,7 +27,7 @@ public class Alert {
 		// Added a label and Button to the text field
 		layout.getChildren().addAll(label, closeButton);
 		layout.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(layout);
+		Scene scene = new Scene(layout,800,400);
 
 		window.setScene(scene);
 
@@ -48,10 +48,7 @@ public class Alert {
 		// Created a Button
 		Button confirm = new Button("Confirm");
 		confirm.setOnAction(e -> {
-			// Must check database for now set false
-			if (false) {
-				Alert.display("Forgot Password", "Ola123");
-			}
+		
 			Alert.display("Forgot Password", "Wrong Answer");
 		});
 		BusMainMenu main = new BusMainMenu();
@@ -71,7 +68,7 @@ public class Alert {
 		// Added a label and Button to the text field
 		layout.getChildren().addAll(label, answer, confirm, closeButton);
 		layout.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(layout);
+		Scene scene = new Scene(layout,800,400);
 
 		window.setScene(scene);
 

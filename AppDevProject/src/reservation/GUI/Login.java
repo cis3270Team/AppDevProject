@@ -56,7 +56,6 @@ public class Login extends Application {
 			try {
 				if (Check.isValidUser(nameInput.getText(), passInput.getText())) {
 						user = Menu.login(nameInput.getText(), passInput.getText());
-						System.out.println("Welcome " + user.getFirstName());
 					}
 					
 					//Create a string to receive response from user's actions
@@ -109,7 +108,7 @@ public class Login extends Application {
 		});
 		// Added all the button,label, and fields to the layout
 		grid.getChildren().addAll(newLabel, nameInput, password, passInput, loginB, forgotPass, forgotB, back);
-		Scene scene = new Scene(grid, 650, 500);
+		Scene scene = new Scene(grid, 800, 400);
 		window.setScene(scene);
 		window.show();
 	}

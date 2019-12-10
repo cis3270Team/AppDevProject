@@ -19,7 +19,6 @@ public class AdminPage extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
-		System.out.println(Login.user.getUserName());
 		// Created a Grid
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(10, 10, 10, 10));
@@ -83,7 +82,7 @@ public class AdminPage extends Application {
 		// Added all labels and buttons to the layout
 		grid.getChildren().addAll(welcome, book, available, logout, manage);
 		grid.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(grid, 450, 450);
+		Scene scene = new Scene(grid, 800, 400);
 		window.setScene(scene);
 		window.show();
 	}

@@ -66,7 +66,7 @@ public class WelcomePage extends Application {
 		});
 		grid.getChildren().addAll(welcome, book, available, logout);
 		grid.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(grid, 650, 500);
+		Scene scene = new Scene(grid, 800, 400);
 		window.setScene(scene);
 		window.show();
 	}

@@ -32,7 +32,7 @@ public class ViewAvailableRides extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
-		window.setTitle("thenewboston - JavaFX");
+		window.setTitle("Bus Reservation App");
 		// Bus Id column
 		TableColumn<Bus, Integer> busIdColumn = new TableColumn<>("Bus Id");
 		busIdColumn.setMinWidth(100);
@@ -81,7 +81,7 @@ public class ViewAvailableRides extends Application {
 		remaining = new TextField("0");
 
 		// Back Button to return to admin main page
-		Button back = new Button("back");
+		Button back = new Button("Back");
 		back.setOnAction(e -> {
 			if(Login.user instanceof Admin) {
 			AdminPage a = new AdminPage();

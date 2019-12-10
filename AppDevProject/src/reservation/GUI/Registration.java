@@ -169,7 +169,7 @@ public class Registration extends Application {
 	grid.getChildren().addAll(firstName, fName, lastName, lName, address, addressT, zip, zipT, city, cityT, state,
 			stateT, email, emailT, ssn, ssnT, userName, userNameT, passWord, passWordT, choiceBox, securityQuestion,
 			answer, loginB, back);
-	Scene sceneRegister = new Scene(grid, 650, 650);
+	Scene sceneRegister = new Scene(grid, 800, 400);
 	window.setScene(sceneRegister);
 	window.show();
 

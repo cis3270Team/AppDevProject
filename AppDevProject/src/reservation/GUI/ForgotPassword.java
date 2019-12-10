@@ -85,7 +85,7 @@ public class ForgotPassword extends Application {
 				});
 				VBox layout=new VBox();
 				layout.getChildren().addAll(question,answer,confirm);
-				Scene passwordScene=new Scene(layout,400,400);
+				Scene passwordScene=new Scene(layout,200,100);
 				stage.setScene(passwordScene);
 				stage.show();
 				
@@ -99,7 +99,7 @@ public class ForgotPassword extends Application {
 
 		grid.getChildren().addAll(newLabel, nameInput, complete, login);
 
-		Scene scene = new Scene(grid, 350, 350);
+		Scene scene = new Scene(grid, 800, 400);
 		window.setScene(scene);
 		window.show();
 	}

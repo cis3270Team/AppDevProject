@@ -17,8 +17,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import reservation.data.Messenger;
+import reservation.util.Admin;
 import reservation.util.Bus;
 import reservation.util.Check;
+import reservation.util.Customer;
 import reservation.util.Reservation;
 
 public class BookRides extends Application {
@@ -28,6 +30,7 @@ public class BookRides extends Application {
 	TableView<Reservation> reservation;
 	static int count = 1;
 	Scene scene;
+	int[] busQuery;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -105,11 +108,17 @@ public class BookRides extends Application {
 		back.setOnAction(e -> {
 			WelcomePage a = new WelcomePage();
 			try {
-				a.start(window);
+				if(Login.user instanceof Admin) {
+					AdminPage admin=new AdminPage();
+					admin.start(window);
+				}else {
+					a.start(window);
+				}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 		});
 		HBox hBox = new HBox();
 		Label book = new Label("Book a Bus Ride");
@@ -135,7 +144,7 @@ public class BookRides extends Application {
 		BorderPane lay = new BorderPane();
 		lay.setCenter(yu);
 		lay.setTop(vBox);
-		 scene = new Scene(lay, 850, 850);
+		 scene = new Scene(lay, 1200, 600);
 		window.setScene(scene);
 		window.show();
 	}
@@ -150,28 +159,20 @@ public class BookRides extends Application {
 			
 			if (Check.reservationExists(bus.getDepartureDate(), Login.user.getUserName())) {
 				Alert.display("Manage Flight", "Reservation Already Exist");
-			}
-			else {
-			
-				Reservation reservation = new Reservation(Login.user.getUserName(),bus.getBusNumber(),
-						bus.getDepartureDate(), count++);
-				int[] array = Messenger.getPassengerCount(bus.getBusNumber());
-				if (array.length == 2) {
-					if (array[1]>array[0]) {
-						BookRides a=new BookRides();
-						Messenger.updatePassengerCount(++array[0], bus.getBusNumber());
-						a.start(window);
-					}
-				}else if(array[1]==array[0]) {
-					Alert.display("Manage Flight", "Bus is full!");
-
+			} else {
+				busQuery = Messenger.getPassengerCount(bus.getBusNumber());
+				if (busQuery.length != 0 && busQuery[0] == busQuery[1]) {
+					Alert.display("Manage Flight", "This Bus is Full!");
+				}else {
+					Reservation reservation = new Reservation(Login.user.getUserName(), bus.getBusNumber(),
+							bus.getDepartureDate(), count++);
+					Messenger.updatePassengerCount(++busQuery[1], bus.getBusNumber());
+					BookRides a = new BookRides();
+					a.start(window);
 				}
-				
 			}
-			
 
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
 			Alert.display("Manage Flight", "Invalid Input please enter correct inputs!");
 
 		}
@@ -187,9 +188,19 @@ public class BookRides extends Application {
 			Reservation res=(Reservation)reservation.getSelectionModel().getSelectedItem();
 			Messenger.deleteReservation(res.getReservationNumber());
 			productSelected.forEach(allProducts::remove);
+			busQuery = Messenger.getPassengerCount(res.getBusNumber());
+			if (busQuery.length != 0) {
+				Messenger.updatePassengerCount(--busQuery[1], res.getBusNumber());
+				BookRides updateRes=new BookRides();
+				updateRes.start(window);
+			}
+			
 			
 		} catch (NoSuchElementException ex) {
 			Alert.display("Manage Flight", "All your reservations have been removed");
+		}catch(Exception ex) {
+			Alert.display("Manage Flight", "You haven\'t made a selection");
+
 		}
 	}
 	public ObservableList<Bus> getBusses(){

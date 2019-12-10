@@ -69,7 +69,7 @@ public class BusMainMenu extends Application {
 			}
 		});
 		grid.getChildren().addAll(login, register);
-		Scene sceneRegister = new Scene(grid, 650, 500);
+		Scene sceneRegister = new Scene(grid, 800, 400);
 		window.setScene(sceneRegister);
 		window.show();
 	}
