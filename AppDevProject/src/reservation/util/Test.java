@@ -14,13 +14,43 @@ public class Test {
 		
 		
 		
+		// test registration
+		String[] newUser = { "te", "test1", "Scot", "Will", "10102 Scot Rd", "Atlanta", "Georgia", "4",
+				"scot@yahoo.com", "234567777", "Where were you born? ", "Nigeria" };
+
+		String response = Menu.register(newUser);
+
+		System.out.println(response);
+
+		System.out.println(Check.getReservationCount());
+
+		// test forgot password
+		//String[] query = Menu.forgotPassword("te");
+		//System.out.println(query[0]);
+
 		String use = "ola";
 		String pass = "ola123";
+		
+		//test forgot password
+		String[] query1 = Menu.forgotPassword(use);
+		if (query1.length != 3) {
+			System.out.println("Invalid Username");
+		}
+		else 
+			System.out.println(query1[2]);
+		
+		/**
+		
+		if (use.length() == 0) {
+			
+		}
+		
 		
 		//test Login
 		User user = null; // define a variable of User class to receive a user
 		if (Check.isValidUser(use, pass)) {
 			user = Menu.login(use, pass);
+			System.out.println("Welcome " + user.getFirstName());
 		}
 		
 		//Create a string to receive response from user's actions
@@ -41,11 +71,13 @@ public class Test {
 			//System.out.println(user.reservation.result);
 			
 			if (user instanceof Admin) {
-				response = ((Admin)user).createBus(1005, "San Francisco", "Dec 28, 2019, 7:00:00 AM",
+				response = ((Admin)user).createBus(1006, "New York", "Dec 28, 2019, 7:00:00 AM",
 														"Atlanta", 100);
 			}
 			
 		}
+		
+		
 		
 		if (response.length() != 0) {
 			System.out.println(response);
@@ -54,14 +86,14 @@ public class Test {
 			System.out.println("Try again");
 		
 		//check if user is a Customer
-		if (!(user instanceof Customer) && !(user instanceof Customer))
+		if (!(user instanceof Admin) && !(user instanceof Admin))
 			System.out.println("invalid username");
 		
 		
 		
-		/**
 		
-		// test registration
+		
+		//test registration
 		String[] newUser = {"te","test1","Scot","Will","10102 Scot Rd","Atlanta","Georgia","4",
 				"scot@yahoo.com","234567777","Where were you born? ","Nigeria"};
 		
@@ -77,10 +109,10 @@ public class Test {
 		String[] query = Menu.forgotPassword("te");
 		System.out.println(query[0]);
 		
-		*/
 		
 		
-		/**
+		
+		
 		
 		//tests if reservation exists
 		

@@ -1,5 +1,7 @@
 package reservation.data;
 
+import javafx.collections.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,97 +14,19 @@ import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import javafx.collections.ObservableList;
+import reservation.util.Bus;
+import reservation.util.Reservation;
+
 public class Messenger {
 	// Data Field
 	private Connection connection;
+	static ObservableList<Bus> busSchedule;
+	static ObservableList<Reservation> reservation;
 	
 	private Messenger() {
 		
 	}
-	
-	public static void main(String[] args) {
-	/*	
-		try {
-			String zipcode = 30349 +"";
-			String city = Messenger.getCity(Integer.parseInt(zipcode));
-			if (city.length()< 1) {
-				System.out.println("Invalid zip code");
-			}
-			else {
-				System.out.println(city);
-				String[] user = getUser("obakare", "ola123");
-				if (user.length != 0) {
-					for (String use: user) {
-						System.out.println(use + " ");
-					}
-				}
-			}
-			LocalDateTime departureDate = LocalDateTime.of(2019,Month.DECEMBER,25,7,30);
-			String date = departureDate.format(
-					DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM));
-			createBus(1001, "Atlanta", date,"Alabama", 100, 0);
-			
-		}
-		catch (SQLException sql) {
-			System.out.println(sql.getMessage());
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		*/
-		
-		/*
-		
-		String[][] test = new String[2][2];
-		for (String[] r: test)
-			for (String q: r)
-				System.out.println("");
-		
-		String[] result;
-		
-		try {
-			result = getBus("Atlanta");
-			if (result.length == 0) {
-				System.out.println("No match");
-			}
-			else {
-				for (String r: result)
-					System.out.print(r + " | ");
-			}
-		}
-		catch(SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		*/
-		
-		try {
-			String[] user = getReservation(1001);
-			
-			if (user[0] == null) {
-				System.out.println("Invalid username or password");
-			}
-			else {
-				for (int i = 0; i < user.length; ++i) {
-					System.out.println(user[i]);
-				}
-			}
-			
-		}
-		catch (SQLException sql) {
-			System.out.println(sql.getMessage());
-		}
-		
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-	}
-	
 	// Method returns ZipCode from the database
 	public static String getCity(int zipCode) throws SQLException {
 
@@ -284,35 +208,62 @@ public class Messenger {
 
 	}
 	
-	/** method returns Bus details */
-	public static String[] getBus(String departureCity) throws SQLException {
-		
-		Messenger c = new Messenger();
+	/** method deletes a Bus */
+	public static void deleteBus(int busNumber) {
 
-		String[] bus = new String[6];
+		try {
+			
+		Messenger c = new Messenger();
 
 		c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
 
-		String query = "Select * from Bus where departureCity =?";
-
+		String query = "delete from Bus where busNumber = ?";
 		PreparedStatement statement = c.connection.prepareStatement(query);
+		statement.setInt(1, busNumber);
 
-		statement.setString(1, departureCity);
-
-		ResultSet result = statement.executeQuery();
-
-		if (result.next()) {
-			bus[0] = "" + result.getInt(1);
-			bus[1] = result.getString(2);
-			bus[2] = result.getString(3);
-			bus[3] = result.getString(4);
-			bus[4] = "" + result.getInt(5);
-			bus[5] = "" + result.getInt(6);
-		}
+		statement.executeUpdate();
 
 		c.connection.close();
+		
+		}
+		catch(SQLException sql) {
+			
+		}
+		catch(Exception e) {
+			
+		}
 
-		return bus;
+	}
+	
+	/** method returns Bus details */
+	public static ObservableList<Bus> getBus() {
+		
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+			String query = "Select * from Bus";
+
+			PreparedStatement statement = connection.prepareStatement(query);
+
+			ResultSet result = statement.executeQuery();
+			busSchedule = FXCollections.observableArrayList();
+			while (result.next()) {
+				busSchedule.addAll(new Bus(result.getInt(1),result.getString(2),result.getString(3),
+					result.getString(4), result.getInt(5),result.getInt(6)));
+				
+			}
+			return busSchedule;
+		}
+			
+		catch (SQLException s) {
+			System.out.println(s.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return null;
 		
 	}
 	
@@ -370,6 +321,40 @@ public class Messenger {
 		return reservation;
 	}
 	
+	/** method returns an ObservableList of Reservation */
+	public static ObservableList<Reservation> getReservation(String username) {
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270",
+					"project");
+
+			String query = "Select * from Reservation where username=?";
+
+			PreparedStatement statement = connection.prepareStatement(query);
+			
+			statement.setString(1, username);
+
+			ResultSet result = statement.executeQuery();
+			reservation = FXCollections.observableArrayList();
+			while (result.next()) {
+				reservation.addAll(new Reservation(result.getInt(1), result.getString(2), result.getString(3),
+						result.getInt(4), result.getString(5), result.getInt(6)));
+
+			}
+			return reservation;
+		}
+
+		catch (SQLException s) {
+			System.out.println(s.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return null;
+
+	}
+	
 	/** Overloaded method returns reservation details */
 	public static String[] getReservation(String departureDate, String username) throws SQLException {
 		Messenger c = new Messenger();
@@ -401,6 +386,31 @@ public class Messenger {
 		return reservation;
 	}
 	
+	/** method deletes a Reservation */
+	public static void deleteReservation(int reservationNumber) {
+
+		try {
+
+			Messenger c = new Messenger();
+
+			c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+			String query = "delete from Reservation where reservationNumber = ?";
+			PreparedStatement statement = c.connection.prepareStatement(query);
+			statement.setInt(1, reservationNumber);
+
+			statement.executeUpdate();
+
+			c.connection.close();
+
+		} catch (SQLException sql) {
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 	// gets the last reservation number from projectdb
 	public static int getReservationCount() throws SQLException {
 
@@ -442,6 +452,70 @@ public class Messenger {
 		statement.executeUpdate();
 		
 		c.connection.close();
+
+	}
+	
+	// Method returns passengerCount
+	public static int[] getPassengerCount(int busNumber) {
+
+		Messenger c = new Messenger();
+
+		try {
+
+			c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+			String query = "Select capacity,passengerCount from Bus where busNumber=?";
+
+			PreparedStatement statement = c.connection.prepareStatement(query);
+			statement.setInt(1, busNumber);
+
+			ResultSet result = statement.executeQuery();
+
+			int[] data = new int[2];
+
+			if (result.next()) {
+				data[0] = result.getInt(1);
+				data[1] = result.getInt(2);
+			}
+
+			c.connection.close();
+
+			return data;
+		} catch (SQLException sql) {
+
+		} catch (Exception e) {
+
+		}
+		
+		return null;
+
+	}
+	
+	// Method updates passengerCount
+	public static void updatePassengerCount(int passengerCount, int busNumber) {
+
+		try {
+
+			Messenger c = new Messenger();
+
+			c.connection = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "cis3270", "project");
+
+			String query = "update Bus set passengerCount=? where busNumber=?";
+
+			PreparedStatement statement = c.connection.prepareStatement(query);
+
+			statement.setInt(1, passengerCount);
+			statement.setInt(2, busNumber);
+
+			statement.executeUpdate();
+
+			c.connection.close();
+
+		} catch (SQLException sql) {
+
+		} catch (Exception e) {
+
+		}
 
 	}
 

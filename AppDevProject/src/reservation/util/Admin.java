@@ -10,18 +10,5 @@ public class Admin extends User {
 				securityQuestion, securityAnswer);
 	}
 	
-	public String createBus(int busNumber, String departureCity, String departureDate, String destinationCity,
-			int capacity) {
-		Bus bus1 = new Bus(busNumber, departureCity, departureDate, destinationCity, capacity);
-		if (bus1.result.isEmpty()) {
-			return "Registration failed";
-		}
-		if (bus1.result.length() == 0) {
-			return "Registration failed";
-		}
-		else {
-			return bus1.result;
-		}
-	}
 
 }

@@ -43,6 +43,11 @@ public interface Menu {
 	/** method for User registration */
 	public static String register(String[] newUser) {
 		
+		for (int i = 0; i < newUser.length; i++) {
+			if (newUser[i] == null)
+				return "Invalid Input";
+		}
+		
 		// Check the parameter for complete registration information and valid Username
 		if (newUser.length != 12) {
 			return "Your registration information is incomplete";

@@ -15,17 +15,23 @@ public class Bus {
 	private String departureDate;
 	private String destinationCity; 
 	private int capacity;
-	private static int passengerCount;
-	public String result;
+	private int passengerCount;
+	
+
+	
+	public Bus() {
+		
+	}
 	
 	public Bus(int busNumber, String departureCity, String departureDate,
-			String destinationCity, int capacity) {
+			String destinationCity, int capacity,int passengerCount) {
+		super();
 		this.busNumber = busNumber;
 		this.departureCity = departureCity;
 		this.departureDate = departureDate;
 		this.destinationCity = destinationCity;
 		this.capacity = capacity;
-		this.result = createBus();
+		this.passengerCount = passengerCount;
 	}
 	
 	public String createBus() {
@@ -42,5 +48,54 @@ public class Bus {
 		
 		return "Bus successfully registered";
 	}
+
+	public int getBusNumber() {
+		return busNumber;
+	}
+
+	public void setBusNumber(int busNumber) {
+		this.busNumber = busNumber;
+	}
+
+	public String getDepartureCity() {
+		return departureCity;
+	}
+
+	public void setDepartureCity(String departureCity) {
+		this.departureCity = departureCity;
+	}
+
+	public String getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public String getDestinationCity() {
+		return destinationCity;
+	}
+
+	public void setDestinationCity(String destinationCity) {
+		this.destinationCity = destinationCity;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public int getPassengerCount() {
+		return passengerCount;
+	}
+
+	public void setPassengerCount(int passengerCount) {
+		this.passengerCount = passengerCount;
+	}
+
 	
 }
