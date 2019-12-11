@@ -26,7 +26,7 @@ public class Reservation {
 	public Reservation(String username, int busNumber, String departureDate, int ticketNumber) {
 		int lastCount = Check.getReservationCount();
 		reservationCount = ++lastCount;
-		this.reservationNumber = ++reservationCount;
+		this.reservationNumber = reservationCount;
 		this.dateCreated = new Date().toString();
 		this.username = username;
 		this.busNumber = busNumber;
