@@ -45,7 +45,7 @@ public class BookRides extends Application {
 		busIdColumn.setMinWidth(100);
 		busIdColumn.setCellValueFactory(new PropertyValueFactory<>("busNumber"));
 
-		// Departing City column
+		// Departure City column
 		TableColumn<Bus, String> originCityColumn = new TableColumn<>("Origin City");
 		originCityColumn.setMinWidth(150);
 		originCityColumn.setCellValueFactory(new PropertyValueFactory<>("departureCity"));

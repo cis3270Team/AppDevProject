@@ -13,5 +13,9 @@ public class Customer extends User {
 		super(username, password,userType,firstName,lastName,address,city,state,zipCode,
 				email,ssn,securityQuestion,securityAnswer);
 	}
+	
+	/** A customer is a type of user with limited behavior
+	 * 
+	 */
 
 }

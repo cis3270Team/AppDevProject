@@ -11,7 +11,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		
+		//use this class to test other classes in this project
 		
 		
 		// test registration

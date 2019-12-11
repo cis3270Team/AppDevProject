@@ -19,16 +19,16 @@ public class AdminPage extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
-		// Created a Grid
+		// Create a Grid
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(8);
 		grid.setHgap(10);
 		grid.setAlignment(Pos.CENTER);
-		// Created a welcome label
+		// Create a welcome label
 		Label welcome = new Label(Login.user.getUserName() + ", welcome to Bus INC administrative portal");
 		GridPane.setConstraints(welcome, 0, 0);
-		// Created a Book Rides Button
+		// Create a Book Rides Button
 		Button book = new Button("Book Rides");
 		GridPane.setConstraints(book, 0, 1);
 		book.setOnAction(e->{
@@ -36,11 +36,10 @@ public class AdminPage extends Application {
 			try {
 				a.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
-		// Created a available label
+		// Create a button for "All available rides"
 		Button available = new Button("All Available Rides");
 		GridPane.setConstraints(available, 0, 2);
 		available.setOnAction(e -> {
@@ -48,7 +47,6 @@ public class AdminPage extends Application {
 			try {
 				a.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -60,7 +58,6 @@ public class AdminPage extends Application {
 			try {
 				admin.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -79,7 +76,7 @@ public class AdminPage extends Application {
 			}
 		});
 
-		// Added all labels and buttons to the layout
+		// Add all labels and buttons to the layout
 		grid.getChildren().addAll(welcome, book, available, logout, manage);
 		grid.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(grid, 800, 400);

@@ -13,7 +13,7 @@ public class Check {
 	/** method returns true if this user is valid */
 	public static boolean isValidUser(String username, String password) {
 		// Get user information from the database
-		String[] result;
+		String[] result;// A string array to store user information when retrieved from database
 		try {
 			result = Messenger.getUser(username, password);
 		}
@@ -81,7 +81,7 @@ public class Check {
 	
 	// returns true if reservation exists
 	public static boolean reservationExists(String departureDate, String username) {
-		String[] result = null;
+		String[] result = null; // A string array to store user information when retrieved from database
 		try {
 			result = Messenger.getReservation(departureDate, username);
 		}

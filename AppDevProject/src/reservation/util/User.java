@@ -12,13 +12,13 @@ public abstract class User implements Menu {
 	private String email;
 	private String ssn;
 	private String userName;
-	private String password;
+	private String password; //Should be revised to a Password object after testing
 	private String securityQuestion;
 	private String securityAnswer;
 	private String type;
 	public Reservation reservation;
 	
-	//no-argument constructor creates a default customer
+	//no-argument constructor creates a default user
 	public User() {
 		
 	}

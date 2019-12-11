@@ -40,7 +40,7 @@ public class ForgotPassword extends Application {
 		nameInput.setPromptText("Username");
 		GridPane.setConstraints(nameInput, 1, 0);
 
-		// Created a complete button
+		// Create a complete button
 		Button complete = new Button("Confirm");
 		GridPane.setConstraints(complete, 0, 1);
 		Button login = new Button("Back");		
@@ -51,7 +51,6 @@ public class ForgotPassword extends Application {
 			try {
 				a.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -94,7 +93,7 @@ public class ForgotPassword extends Application {
 			Alert.display("Forgot Password", "Username Doesn't Exist");
 		}
 			});
-		// Created a login button
+		// Create a login button
 		
 
 		grid.getChildren().addAll(newLabel, nameInput, complete, login);

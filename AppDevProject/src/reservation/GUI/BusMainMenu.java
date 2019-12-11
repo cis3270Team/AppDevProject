@@ -28,7 +28,7 @@ public class BusMainMenu extends Application {
 		grid.setVgap(8);
 		grid.setHgap(10);
 		grid.setAlignment(Pos.CENTER);
-		// Created a Main Menu Label
+		// Create a Main Menu Label
 		Label headerLabel = new Label("Main Menu");
 
 		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -38,22 +38,21 @@ public class BusMainMenu extends Application {
 		GridPane.setHalignment(headerLabel, HPos.CENTER);
 
 		GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
-		// Created a login button
+		// Create a login button
 		Button login = new Button("Login");
 		GridPane.setConstraints(login, 0, 1);
-		// Created a register button
+		// Create a register button
 		Button register = new Button("Register");
 		GridPane.setConstraints(register, 1, 1);
-		// Created a Login object
+		// Create a Login object
 		Login loginS = new Login();
-		// Created a registration object
+		// Create a registration object
 		Registration registerS = new Registration();
 		login.setOnAction(e -> {
 			try {
 				// Go to login page
 				loginS.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 
 			}
@@ -63,7 +62,6 @@ public class BusMainMenu extends Application {
 				// Go to registration page
 				registerS.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 
 			}

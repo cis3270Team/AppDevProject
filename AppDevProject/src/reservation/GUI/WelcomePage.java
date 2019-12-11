@@ -24,10 +24,10 @@ public class WelcomePage extends Application {
 		grid.setVgap(8);
 		grid.setHgap(10);
 		grid.setAlignment(Pos.CENTER);
-		// Created a Username label
+		// Create a Username label
 		Label welcome = new Label("Welcome to Bus INC "+", "+Login.user.getFirstName());
 		GridPane.setConstraints(welcome, 0, 0);
-		// Created a Username text field
+		// Create a Username text field
 		Button book = new Button("Book Rides");
 		GridPane.setConstraints(book, 0, 1);
 		book.setOnAction(e -> {
@@ -35,11 +35,10 @@ public class WelcomePage extends Application {
 			try {
 				a.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
-		// Created a password label
+		// Create a password label
 		Button available = new Button("All Available Rides");
 		GridPane.setConstraints(available, 0, 2);
 		available.setOnAction(e -> {
@@ -52,7 +51,7 @@ public class WelcomePage extends Application {
 			}
 
 		});
-		// Created password input field
+		// Create password input field
 		Button logout = new Button("Logout");
 		GridPane.setConstraints(logout, 0, 3);
 		Login log = new Login();

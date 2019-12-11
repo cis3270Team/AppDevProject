@@ -6,6 +6,9 @@ import reservation.data.Messenger;
 
 public interface Menu {
 	
+	/** abstract method makes new reservation for this user */
+	public abstract void makeNewReservation(int busNumber,String departureDate,int ticketNumber);
+	
 	/** method for User login */
 	public static User login(String username, String password) {
 		// Get user information from the database
@@ -22,11 +25,11 @@ public interface Menu {
 		
 		try {
 		
-			if (result[2].matches("Admin")) {
+			if (result[2].matches("Admin")) {//Check if this user is an administrator
 				return new Admin(result[0], result[1], result[2], result[3], result[4], result[5], result[6],
 					result[7], result[8], result[9], result[10], result[11], result[12]);
 			}
-			else
+			else //else log in as a Customer
 				return new Customer(result[0], result[1], result[2], result[3], result[4], result[5], result[6],
 					result[7], result[8], result[9], result[10], result[11], result[12]);
 		}
@@ -94,7 +97,7 @@ public interface Menu {
 		}
 		
 		String userType = "";
-		if (email.contains("@yorla.com")) {
+		if (email.contains("@yorla.com")) { //if the user email contains "@yorla.com", register as an admin
 			userType = "Admin";
 		}
 		else {
@@ -146,10 +149,6 @@ public interface Menu {
 		
 		return result;
 		
-	}
-	
-	/** abstract method makes new reservation for this user */
-	public abstract void makeNewReservation(int busNumber,String departureDate,int ticketNumber);
-		
+	}	
 
 }

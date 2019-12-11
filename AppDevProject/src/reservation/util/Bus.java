@@ -18,11 +18,12 @@ public class Bus {
 	private int passengerCount;
 	
 
-	
+	// no argument constructor
 	public Bus() {
 		
 	}
 	
+	// Constructor
 	public Bus(int busNumber, String departureCity, String departureDate,
 			String destinationCity, int capacity,int passengerCount) {
 		super();
@@ -34,6 +35,7 @@ public class Bus {
 		this.passengerCount = passengerCount;
 	}
 	
+	// method stores this bus in the database
 	public String createBus() {
 		try {
 			Messenger.createBus(this.busNumber, this.departureCity, this.departureDate,
@@ -49,18 +51,22 @@ public class Bus {
 		return "Bus successfully registered";
 	}
 
+	//getter
 	public int getBusNumber() {
 		return busNumber;
 	}
 
+	//setter
 	public void setBusNumber(int busNumber) {
 		this.busNumber = busNumber;
 	}
 
+	//getter
 	public String getDepartureCity() {
 		return departureCity;
 	}
 
+	//setter
 	public void setDepartureCity(String departureCity) {
 		this.departureCity = departureCity;
 	}

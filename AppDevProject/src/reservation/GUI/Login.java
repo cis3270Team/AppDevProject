@@ -44,11 +44,11 @@ public class Login extends Application {
 		// Created a password label
 		Label password = new Label("PassWord");
 		GridPane.setConstraints(password, 0, 2);
-		// Created password input field
+		// Create password input field
 		PasswordField passInput = new PasswordField();
 		passInput.setPromptText("Password");
 		GridPane.setConstraints(passInput, 1, 2);
-		// Created a login button
+		// Create a login button
 		Button loginB = new Button("Login");
 		GridPane.setConstraints(loginB, 1, 3);
 		WelcomePage welcome = new WelcomePage();
@@ -75,26 +75,24 @@ public class Login extends Application {
 			}
 				
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
-		// Created a forgot password label
+		// Create a forgot password label
 		Label forgotPass = new Label("Forgot your password? ");
 		GridPane.setConstraints(forgotPass, 1, 4);
-		// Created a forgot button
+		// Create a forgot button
 		Button forgotB = new Button("Forgot");
 		forgotB.setOnAction(e -> {
 			try {
 				passwordScene.start(window);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
 		});
 		GridPane.setConstraints(forgotB, 1, 5);
-		// Created a main menu button
+		// Create a main menu button
 		Button back = new Button("Main Menu");
 		GridPane.setConstraints(back, 1, 6);
 		BusMainMenu main = new BusMainMenu();
@@ -106,7 +104,7 @@ public class Login extends Application {
 				e1.printStackTrace();
 			}
 		});
-		// Added all the button,label, and fields to the layout
+		// Add all the button,label, and fields to the layout
 		grid.getChildren().addAll(newLabel, nameInput, password, passInput, loginB, forgotPass, forgotB, back);
 		Scene scene = new Scene(grid, 800, 400);
 		window.setScene(scene);

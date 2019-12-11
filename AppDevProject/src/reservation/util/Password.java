@@ -2,6 +2,10 @@ package reservation.util;
 
 public class Password {
 	
+	/**
+	 * The User class composes Password
+	 */
+	
 	//Data field
 	private String password;
 	private String securityQuestion;

@@ -16,15 +16,15 @@ public class Alert {
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
 		window.setMinWidth(250);
-		// Created a Label
+		// Create a Label
 		Label label = new Label();
 		label.setText(message);
-		// Created a Button
+		// Create a Button
 		Button closeButton = new Button("Close");
 		closeButton.setOnAction(e -> window.close());
-		// Created a layout
+		// Create a layout
 		VBox layout = new VBox(10);
-		// Added a label and Button to the text field
+		// Add a label and Button to the text field
 		layout.getChildren().addAll(label, closeButton);
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout,800,400);
@@ -39,13 +39,13 @@ public class Alert {
 		Stage window = new Stage();
 		window.setTitle("Security question");
 		window.setMinWidth(250);
-		// Created a Label
+		// Create a Label
 		Label label = new Label();
 		label.setText(question);
-		// Created Text Field answer
+		// Create Text Field answer
 		TextField answer = new TextField();
 		answer.setPromptText("Answer");
-		// Created a Button
+		// Create a Button for confirmation
 		Button confirm = new Button("Confirm");
 		confirm.setOnAction(e -> {
 		

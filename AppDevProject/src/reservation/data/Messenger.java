@@ -24,7 +24,7 @@ public class Messenger {
 	static ObservableList<Bus> busSchedule;
 	static ObservableList<Reservation> reservation;
 	
-	private Messenger() {
+	private Messenger() {//The constructor is deliberately private to avoid instantiation outside of this class
 		
 	}
 	// Method returns ZipCode from the database

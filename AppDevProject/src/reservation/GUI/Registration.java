@@ -35,9 +35,9 @@ public class Registration extends Application {
 	grid.setVgap(8);
 	grid.setHgap(10);
 	grid.setAlignment(Pos.CENTER);
-	// Created a Registration Label
+	
+	// Create a Registration Label
 	// Add Header
-
 	Label headerLabel = new Label("Registration Form");
 
 	headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -47,19 +47,19 @@ public class Registration extends Application {
 	GridPane.setHalignment(headerLabel, HPos.CENTER);
 
 	GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
-
+	// Create a First Name label
 	Label firstName = new Label("First Name:");
 	GridPane.setConstraints(firstName, 0, 1);
-	// Created a First Name Text Field
+	// Create a First Name Text Field
 	TextField fName = new TextField();
 	GridPane.setConstraints(fName, 1, 1);
-	// Created a Last Name Label
+	// Create a Last Name Label
 	Label lastName = new Label("Last Name:");
 	GridPane.setConstraints(lastName, 0, 2);
-	// Created a Last Name Text Field
+	// Create a Last Name Text Field
 	TextField lName = new TextField();
 	GridPane.setConstraints(lName, 1, 2);
-	// Created a Address Label
+	// Create a Address Label
 	Label address = new Label("Address:");
 	GridPane.setConstraints(address, 0, 3);
 	// Created a Address Text Field
